@@ -6,37 +6,42 @@ import javax.swing.*;
 
 public class HauptFenster extends JFrame {
     private PersonenStorage storage;
+    private final Controller controller;
     private JLabel titleLabel;
     private JLabel vollerNameLabel;
     private JButton zurueckButton;
     private JButton vorwaertsButton;
-    private JButton bearbeiteButton;
+    private JButton bearbeitenButton;
     private JButton neuButton;
     private JPanel hauptPanel;
     private JPanel buttonPanel;
 
-    public HauptFenster(PersonenStorage storage) {
+    public HauptFenster(PersonenStorage storage, final Controller controller) {
         super("HauptFenster");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
-        setLocationRelativeTo(null);
+        setResizable(false);
         this.storage = storage;
+        this.controller = controller;
+
+        getContentPane().setLayout(new BorderLayout(20, 20));
 
         hauptPanel = new JPanel();
-        hauptPanel.setLayout(new GridLayout(3, 1));
+        hauptPanel.setLayout(new GridLayout(3, 1, 20, 20));
         buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 4));
+        buttonPanel.setLayout(new GridLayout(1, 5, 20, 20));
 
-        titleLabel = new JLabel("Personenverwaltung");
-        vollerNameLabel = new JLabel("Voller Name");
-        zurueckButton = new JButton("Zurueck");
-        vorwaertsButton = new JButton("Vorwaerts");
-        bearbeiteButton = new JButton("Bearbeiten");
+        titleLabel = new JLabel("Person:");
+        vollerNameLabel = new JLabel("VollerName");
+        zurueckButton = new JButton("<");
+        vorwaertsButton = new JButton(">");
+        bearbeitenButton = new JButton("Bearbeiten");
         neuButton = new JButton("Neu");
 
         buttonPanel.add(zurueckButton);
         buttonPanel.add(vorwaertsButton);
-        buttonPanel.add(bearbeiteButton);
+        buttonPanel.add(new JLabel()); // added as separator
+        buttonPanel.add(bearbeitenButton);
         buttonPanel.add(neuButton);
 
         hauptPanel.add(titleLabel);
@@ -51,31 +56,22 @@ public class HauptFenster extends JFrame {
                 System.out.println("Zurueck Button gedrueckt");
             }
         });
-    }
 
-    public void setVollerName(String vollerName) {
-        vollerNameLabel.setText(vollerName);
-    }
-
-    public void setVorwaertsButtonListener(ActionListener listener) {
         vorwaertsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 System.out.println("Vorwaerts Button gedrueckt");
             }
         });
-    }
 
-    public void setBearbeiteButtonListener(ActionListener listener) {
-        bearbeiteButton.addActionListener(new ActionListener() {
+        bearbeitenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 System.out.println("Bearbeite Button gedrueckt");
+                controller.formularFensterOeffnen();
             }
         });
-    }
 
-    public void setNeuButtonListener(ActionListener listener) {
         neuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -83,4 +79,9 @@ public class HauptFenster extends JFrame {
             }
         });
     }
+
+    public void setVollerName(String vollerName) {
+        vollerNameLabel.setText(vollerName);
+    }
+
 }

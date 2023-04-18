@@ -7,12 +7,25 @@ public class Controller {
 
     public Controller() {
         storage = new PersonenStorage();
-        hauptFenster = new HauptFenster(storage);
+        hauptFenster = new HauptFenster(storage, this);
         start();
     }
 
     private void start() {
         hauptFenster.setVisible(true);
+    }
+
+    public void formularFensterOeffnen() {
+        FormularFenster formularFenster = new FormularFenster(storage, this);
+        formularFenster.setVisible(true);
+        // make HauptFenster dormant
+        hauptFenster.setEnabled(false);
+    }
+
+    public int formularFensterSchliessen(FormularFenster formularFenster) {
+        // make HauptFenster active again
+        hauptFenster.setEnabled(true);
+        return 2;
     }
 
 }
