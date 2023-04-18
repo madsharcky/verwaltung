@@ -34,7 +34,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="230.9773950484393" width="222.0" x="1489.9324004305702" y="110.66426264800853"/>
+          <y:Geometry height="260.66523143164704" width="222.0" x="1489.9324004305702" y="95.82034445640465"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="87.7890625" x="67.10546875" xml:space="preserve" y="3.0">HauptFenster<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -45,12 +45,14 @@
 -zurueckButton: JButton
 -vorwaertsButton: JButton
 -bearbeitenButton: JButton
+-neuButton: JButton
 -hauptPanel: JPanel
 -buttonPanel: JPanel</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+startFenster(PersonenStorage)
+            <y:MethodLabel xml:space="preserve">+HauptFenster(PersonenStorage)
 +vorwaertsButtonClick(): void
 +zurueckButtonClick(): void
-+bearbeitenButtonCLick(): void</y:MethodLabel>
++bearbeitenButtonCLick(): void
++neuButtonCLick(): void</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -59,7 +61,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="335.0667384284175" width="222.0" x="490.1730462863295" y="58.619590958019444"/>
+          <y:Geometry height="360.5134553283099" width="222.0" x="477.4496878363834" y="45.89623250807324"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="107.3017578125" x="57.34912109375" xml:space="preserve" y="3.0">FormularFenster<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -76,10 +78,12 @@
 -Kinder: JTextfield 
 -speichernButton: JButton
 -abbrechenButton: JButton
+-loeschenButton: JButton
 -laender: ArrayList&lt;string&gt;</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+FormularFenster(PersonenStorage)
-+speichernButtonClick(): void
-+abbrechennButtonClick(): void
+-speichernButtonClick(): void
+-abbrechennButtonClick(): void
+-loeschenButtonClick(): void
 -validationAHV(string): boolean
 -validationDatum(string): boolean
 -validationKinder(string): boolean</y:MethodLabel>
@@ -147,7 +151,6 @@
     </node>
     <node id="n5">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
           <y:Geometry height="152.4940796555436" width="307.63832077502707" x="923.1808396124864" y="149.90592034445638"/>
@@ -177,7 +180,6 @@
       </data>
     </edge>
     <edge id="e1" source="n5" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -188,7 +190,6 @@
       </data>
     </edge>
     <edge id="e2" source="n1" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -199,7 +200,6 @@
       </data>
     </edge>
     <edge id="e3" source="n2" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -210,7 +210,6 @@
       </data>
     </edge>
     <edge id="e4" source="n5" target="n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
