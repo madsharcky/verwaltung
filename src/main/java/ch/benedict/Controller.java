@@ -25,6 +25,7 @@ public class Controller {
     public int formularFensterSchliessen(FormularFenster formularFenster) {
         // make HauptFenster active again
         hauptFenster.setEnabled(true);
+        formularFenster.dispose();
         return 2;
     }
 

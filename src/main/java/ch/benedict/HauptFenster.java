@@ -50,6 +50,8 @@ public class HauptFenster extends JFrame {
 
         add(hauptPanel);
 
+        pack();
+
         zurueckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
