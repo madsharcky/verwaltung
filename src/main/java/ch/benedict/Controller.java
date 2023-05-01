@@ -5,23 +5,45 @@ public class Controller {
     private PersonenStorage storage;
     private HauptFenster hauptFenster;
 
+    /**
+     * Konstruktor für die Controller-Klasse. Erzeugt eine Instanz der
+     * PersonenStorage-Klasse
+     * und des HauptFenster-Fensters. Die Methode start() wird aufgerufen, um das
+     * Hauptfenster anzuzeigen.
+     */
     public Controller() {
         storage = new PersonenStorage();
         hauptFenster = new HauptFenster(storage, this);
         start();
     }
 
+    /**
+     * Öffnet das Hauptfenster der Anwendung.
+     */
     private void start() {
         hauptFenster.setVisible(true);
     }
 
-    public void formularFensterOeffnen() {
-        FormularFenster formularFenster = new FormularFenster(storage, this);
+    /**
+     * Öffnet ein Formularfenster und setzt das Hauptfenster auf inaktiv.
+     * 
+     * @param istNeu Gibt an, ob es sich um ein neues Formular handelt oder nicht.
+     */
+    public void formularFensterOeffnen(boolean istNeu) {
+        FormularFenster formularFenster = new FormularFenster(storage, this, istNeu);
         formularFenster.setVisible(true);
         // make HauptFenster dormant
         hauptFenster.setEnabled(false);
     }
 
+    /**
+     * Schließt das übergebene FormularFenster und aktiviert das HauptFenster
+     * wieder.
+     * 
+     * @param formularFenster das FormularFenster, das geschlossen werden soll
+     * @return gibt die Zahl 2 zurück, um anzuzeigen, dass das FormularFenster
+     *         erfolgreich geschlossen wurde
+     */
     public int formularFensterSchliessen(FormularFenster formularFenster) {
         // make HauptFenster active again
         hauptFenster.setEnabled(true);

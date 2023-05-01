@@ -6,9 +6,9 @@ import javax.swing.*;
 
 public class HauptFenster extends JFrame {
     private PersonenStorage storage;
-    private final Controller controller;
     private JLabel titleLabel;
-    private JLabel vollerNameLabel;
+    private JLabel NameLabel;
+    private JLabel vornameLabel;
     private JButton zurueckButton;
     private JButton vorwaertsButton;
     private JButton bearbeitenButton;
@@ -16,13 +16,20 @@ public class HauptFenster extends JFrame {
     private JPanel hauptPanel;
     private JPanel buttonPanel;
 
+    /**
+     * Erzeugt das Hauptfenster der Anwendung, in dem die Liste der Personen
+     * angezeigt wird.
+     * 
+     * @param storage    ein Objekt der Klasse PersonenStorage, das die
+     *                   Personenliste enthält
+     * @param controller ein Objekt der Klasse Controller, das die Steuerung der
+     *                   Anwendung übernimmt
+     */
     public HauptFenster(PersonenStorage storage, final Controller controller) {
         super("HauptFenster");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
         setResizable(false);
         this.storage = storage;
-        this.controller = controller;
 
         getContentPane().setLayout(new BorderLayout(20, 20));
 
@@ -32,7 +39,8 @@ public class HauptFenster extends JFrame {
         buttonPanel.setLayout(new GridLayout(1, 5, 20, 20));
 
         titleLabel = new JLabel("Person:");
-        vollerNameLabel = new JLabel("VollerName");
+        NameLabel = new JLabel("Name");
+        vornameLabel = new JLabel("Vorname");
         zurueckButton = new JButton("<");
         vorwaertsButton = new JButton(">");
         bearbeitenButton = new JButton("Bearbeiten");
@@ -45,16 +53,21 @@ public class HauptFenster extends JFrame {
         buttonPanel.add(neuButton);
 
         hauptPanel.add(titleLabel);
-        hauptPanel.add(vollerNameLabel);
+        hauptPanel.add(NameLabel);
+        hauptPanel.add(vornameLabel);
         hauptPanel.add(buttonPanel);
 
         add(hauptPanel);
 
-        pack();
+        setPersonenInfo();
+
+        pack(); // resize window to fit content
 
         zurueckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
+                // storage.zurueck();
+                setPersonenInfo();
                 System.out.println("Zurueck Button gedrueckt");
             }
         });
@@ -62,6 +75,8 @@ public class HauptFenster extends JFrame {
         vorwaertsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
+                // storage.vorwaerts();
+                setPersonenInfo();
                 System.out.println("Vorwaerts Button gedrueckt");
             }
         });
@@ -70,7 +85,7 @@ public class HauptFenster extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 System.out.println("Bearbeite Button gedrueckt");
-                controller.formularFensterOeffnen();
+                controller.formularFensterOeffnen(false);
             }
         });
 
@@ -78,12 +93,19 @@ public class HauptFenster extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 System.out.println("Neu Button gedrueckt");
+                controller.formularFensterOeffnen(true);
             }
         });
     }
 
-    public void setVollerName(String vollerName) {
-        vollerNameLabel.setText(vollerName);
+    /**
+     * Setzt die Personeninformationen in den zugehörigen Labels.
+     * Dabei wird der Name in das Label "NameLabel" und der Vorname in das Label
+     * "vornameLabel" gesetzt.
+     */
+    private void setPersonenInfo() {
+        // NameLabel.setText(storage.getPerson().getName());
+        // vornameLabel.setText(storage.getPerson().getVorname());
     }
 
 }

@@ -1,7 +1,10 @@
 package ch.benedict;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Date;
@@ -9,12 +12,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 
 public class FormularFenster extends JFrame {
     private PersonenStorage storage;
     private final Controller controller;
+    private Boolean isNew;
+    private String selectedGeschlecht;
+
     private JLabel titleLabel;
     private JLabel nameLabel;
     private JLabel vornameLabel;
@@ -26,11 +32,11 @@ public class FormularFenster extends JFrame {
 
     private JTextField nameTextField;
     private JTextField vornameTextField;
-    private JRadioButton geschlechtRadioButton;
+    private ButtonGroup geschlechtRadioButtonGroup;
     private JTextField geburtsdatumTextField;
-    private JTextField ahvTextField;
+    private JFormattedTextField ahvTextField;
     private JComboBox regionComboBox;
-    private JTextField kinderTextField;
+    private JSpinner kinderTextField;
 
     private JButton speichernButton;
     private JButton abbrechenButton;
@@ -38,10 +44,27 @@ public class FormularFenster extends JFrame {
 
     private JPanel hauptPanel;
     private JPanel buttonPanel;
+    private JPanel geschlechtPanel;
 
     private ArrayList<String> regionen;
 
-    public FormularFenster(PersonenStorage storage, final Controller controller) {
+    /**
+     * Diese Klasse stellt ein Formularfenster dar, in dem Personendaten bearbeitet
+     * werden können.
+     * Das Formular enthält Eingabefelder für Name, Vorname, Geschlecht,
+     * Geburtsdatum, AHV-Nummer,
+     * Region und Kinder. Es kann entweder ein neues Formular angelegt oder ein
+     * vorhandenes bearbeitet werden.
+     * Wenn das Fenster geschlossen wird, wird der zugehörige Controller informiert.
+     * 
+     * @param storage    Der PersonenStorage, in dem die Personendaten gespeichert
+     *                   werden.
+     * @param controller Der Controller, der die Interaktion mit dem Formularfenster
+     *                   steuert.
+     * @param isNew      Gibt an, ob es sich um ein neues Formular oder eine
+     *                   Bearbeitung eines vorhandenen Formulars handelt.
+     */
+    public FormularFenster(PersonenStorage storage, final Controller controller, Boolean isNew) {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -52,6 +75,7 @@ public class FormularFenster extends JFrame {
 
         this.storage = storage;
         this.controller = controller;
+        this.isNew = isNew;
 
         regionen = new ArrayList<String>();
         regionen.add("Zürich");
@@ -99,11 +123,96 @@ public class FormularFenster extends JFrame {
 
         nameTextField = new JTextField();
         vornameTextField = new JTextField();
-        geschlechtRadioButton = new JRadioButton();
+        // radio button
+        geschlechtRadioButtonGroup = new ButtonGroup();
+        geschlechtPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JRadioButton geschlechtRadioButton1 = new JRadioButton("Männlich");
+        JRadioButton geschlechtRadioButton2 = new JRadioButton("Weiblich");
+        JRadioButton geschlechtRadioButton3 = new JRadioButton("Anderes");
+        geschlechtRadioButtonGroup.add(geschlechtRadioButton1);
+        geschlechtRadioButtonGroup.add(geschlechtRadioButton2);
+        geschlechtRadioButtonGroup.add(geschlechtRadioButton3);
+        geschlechtPanel.add(geschlechtRadioButton1);
+        geschlechtPanel.add(geschlechtRadioButton2);
+        geschlechtPanel.add(geschlechtRadioButton3);
+        selectedGeschlecht = "";
+        geschlechtRadioButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // set the selected gender to "Männlich"
+                selectedGeschlecht = "Männlich";
+            }
+        });
+        geschlechtRadioButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // set the selected gender to "Weiblich"
+                selectedGeschlecht = "Weiblich";
+            }
+        });
+        geschlechtRadioButton3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // set the selected gender to "Anderes"
+                selectedGeschlecht = "Anderes";
+            }
+        });
+
         geburtsdatumTextField = new JTextField();
-        ahvTextField = new JTextField();
+        // add placeholder for date that is only shown if the textfield is empty and not
+        // focused
+        if (isNew) {
+            geburtsdatumTextField.setText("TT.MM.JJJJ");
+            geburtsdatumTextField.setForeground(Color.GRAY);
+        }
+        geburtsdatumTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (geburtsdatumTextField.getText().equals("TT.MM.JJJJ")) {
+                    geburtsdatumTextField.setText("");
+                    geburtsdatumTextField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (geburtsdatumTextField.getText().equals("")) {
+                    geburtsdatumTextField.setText("TT.MM.JJJJ");
+                    geburtsdatumTextField.setForeground(Color.GRAY);
+                }
+            }
+        });
+        // make a new number formatter for ahv that looks like ##.####.####.##
+        MaskFormatter formatter;
+        try {
+            formatter = new MaskFormatter("###.####.####.##");
+            formatter.setPlaceholderCharacter('0');
+            ahvTextField = new JFormattedTextField(formatter);
+        } catch (ParseException e) {
+        }
+
+        // add placeholder for ahv that is only shown if the textfield is empty and not
+        // focused
+        if (isNew) {
+            ahvTextField.setText("7561234567897");
+            ahvTextField.setForeground(Color.GRAY);
+        }
+        ahvTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (ahvTextField.getText().equals("7561234567897")) {
+                    ahvTextField.setText("");
+                    ahvTextField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (ahvTextField.getText().equals("")) {
+                    ahvTextField.setText("7561234567897");
+                    ahvTextField.setForeground(Color.GRAY);
+                }
+            }
+        });
         regionComboBox = new JComboBox();
-        kinderTextField = new JTextField();
+        kinderTextField = new JSpinner();
 
         speichernButton = new JButton("Speichern");
         abbrechenButton = new JButton("Abbrechen");
@@ -111,8 +220,9 @@ public class FormularFenster extends JFrame {
 
         buttonPanel.add(speichernButton);
         buttonPanel.add(abbrechenButton);
-        buttonPanel.add(loeschenButton);
-
+        if (!isNew) {
+            buttonPanel.add(loeschenButton);
+        }
         hauptPanel.add(titleLabel);
         hauptPanel.add(new JLabel()); // added as separator
         hauptPanel.add(nameLabel);
@@ -120,7 +230,7 @@ public class FormularFenster extends JFrame {
         hauptPanel.add(vornameLabel);
         hauptPanel.add(vornameTextField);
         hauptPanel.add(gesclechtLabel);
-        hauptPanel.add(geschlechtRadioButton);
+        hauptPanel.add(geschlechtPanel);
         hauptPanel.add(geburtsdatumLabel);
         hauptPanel.add(geburtsdatumTextField);
         hauptPanel.add(ahvLabel);
@@ -159,8 +269,35 @@ public class FormularFenster extends JFrame {
         for (String region : regionen) {
             regionComboBox.addItem(region);
         }
+
+        // if (!isNew) {
+        // // set the values of the person to the textfields
+        // Person person = storage.getPerson
+        // nameTextField.setText(person.getName());
+        // vornameTextField.setText(person.getVorname());
+        // if (person.getGeschlecht().equals("Männlich")) {
+        // geschlechtRadioButton1.setSelected(true);
+        // } else if (person.getGeschlecht().equals("Weiblich")) {
+        // geschlechtRadioButton2.setSelected(true);
+        // } else {
+        // geschlechtRadioButton3.setSelected(true);
+        // }
+        // geburtsdatumTextField.setText(person.getGeburtsdatum());
+        // ahvTextField.setText(person.getAhv());
+        // regionComboBox.setSelectedItem(person.getRegion());
+        // kinderTextField.setValue(person.getKinder());
+        // }
     }
 
+    /**
+     * Speichert eine Person, indem alle Eingaben validiert werden.
+     * Wenn alle Eingaben korrekt sind, wird eine neue Person erstellt und in der
+     * Datenbank gespeichert.
+     * Wenn die Eingaben nicht korrekt sind, wird eine Fehlermeldung angezeigt und
+     * die Person wird nicht gespeichert.
+     * 
+     * @return void
+     */
     private void speichern() {
         // validate all the inputs
         if (nameTextField.getText().isEmpty()) {
@@ -171,71 +308,74 @@ public class FormularFenster extends JFrame {
             JOptionPane.showMessageDialog(this, "Bitte geben Sie einen Vornamen ein.");
             return;
         }
+        if (selectedGeschlecht.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Bitte wählen Sie ein Geschlecht aus.");
+            return;
+        }
         if (geburtsdatumTextField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Bitte geben Sie ein Geburtsdatum ein.");
             return;
         }
-        if (ahvTextField.getText().isEmpty()) {
+        if (ahvTextField.getText().isEmpty() || ahvTextField.getText().equals("756.1234.5678.97")) {
             JOptionPane.showMessageDialog(this, "Bitte geben Sie eine AHV Nummer ein.");
-            return;
-        }
-        if (kinderTextField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Bitte geben Sie die Anzahl Kinder ein.");
             return;
         }
         if (regionComboBox.getSelectedItem().toString().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Bitte wählen Sie eine Region aus.");
             return;
         }
-        if (validateAHV(ahvTextField.getText()) == false) {
-            JOptionPane.showMessageDialog(this, "Bitte geben Sie eine gültige AHV Nummer ein.");
-            return;
-        }
         if (validateGeburtsdatum(geburtsdatumTextField.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Bitte geben Sie ein gültiges Geburtsdatum ein.");
-            return;
-        }
-        if (validateKinder(kinderTextField.getText()) == false) {
-            JOptionPane.showMessageDialog(this, "Bitte geben Sie eine gültige Anzahl Kinder ein.");
             return;
         }
 
         String name = nameTextField.getText();
         String vorname = vornameTextField.getText();
-        boolean geschlecht = geschlechtRadioButton.isSelected();
+        String geschlecht = selectedGeschlecht;
         String geburtsdatum = geburtsdatumTextField.getText();
         String ahv = ahvTextField.getText();
         String region = (String) regionComboBox.getSelectedItem();
-        String kinder = kinderTextField.getText();
+        String kinder = kinderTextField.getValue().toString();
 
+        // if (isNew) {
         // Person person = new Person(name, vorname, geschlecht, geburtsdatum, ahv,
         // region, kinder);
-
         // storage.hinzufuegen(person);
+        // } else {
+        // storage.speichern();
+        // }
+
         System.out.println("Person gespeichert");
+        controller.formularFensterSchliessen(this);
     }
 
+    /**
+     * Schließt das aktuelle Fenster und ruft die Methode
+     * "formularFensterSchliessen" des Controllers auf.
+     * Diese Methode wird aufgerufen, wenn der Benutzer den "Abbrechen"-Button
+     * betätigt.
+     */
     private void abbrechen() {
         controller.formularFensterSchliessen(this);
         System.out.println("abbrechen");
     }
 
+    /**
+     * Löscht alle Einträge aus dem Speicher.
+     */
     private void loeschen() {
         // storage.loeschen();
         System.out.println("loeschen");
     }
 
-    // validate the AHV number, it should be 13 digits and a valid AHV number
-    private boolean validateAHV(String ahv) {
-        if (ahv.length() != 13) {
-            return false;
-        }
-        // check with regex
-        return ahv.matches("[0-9]+");
-    }
-
-    // validate the date of birth in the format dd.mm.yyyy, it should be a valid
-    // date and older then 1 day
+    /**
+     * Überprüft das übergebene Geburtsdatum auf das Format dd.MM.yyyy und ob es
+     * gültig ist.
+     * 
+     * @param datum das zu prüfende Geburtsdatum im Format dd.MM.yyyy
+     * @return true, wenn das Datum gültig und älter als einen Tag ist, andernfalls
+     *         false
+     */
     private boolean validateGeburtsdatum(String datum) {
         // check with regex
         if (!datum.matches("[0-9]{2}.[0-9]{2}.[0-9]{4}")) {
@@ -257,24 +397,6 @@ public class FormularFenster extends JFrame {
             }
         } catch (ParseException e) {
             return false;
-        }
-        return false;
-    }
-
-    // validate the number of children, it should be a number between 0 and 99
-    private boolean validateKinder(String kinder) {
-        if (kinder.length() > 2) {
-            return false;
-        }
-        int[] kinderArray = new int[kinder.length()];
-        for (int i = 0; i < kinder.length(); i++) {
-            kinderArray[i] = Integer.parseInt(kinder.substring(i, i + 1));
-        }
-        if (kinderArray.length == 1) {
-            return kinderArray[0] >= 0 && kinderArray[0] <= 9;
-        }
-        if (kinderArray.length == 2) {
-            return kinderArray[0] >= 0 && kinderArray[0] <= 9 && kinderArray[1] >= 0 && kinderArray[1] <= 9;
         }
         return false;
     }
