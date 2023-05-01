@@ -270,6 +270,7 @@ public class FormularFenster extends JFrame {
             regionComboBox.addItem(region);
         }
 
+        // TODO: uncomment this
         // if (!isNew) {
         // // set the values of the person to the textfields
         // Person person = storage.getPerson
@@ -337,6 +338,7 @@ public class FormularFenster extends JFrame {
         String region = (String) regionComboBox.getSelectedItem();
         String kinder = kinderTextField.getValue().toString();
 
+        // TODO: uncomment this
         // if (isNew) {
         // Person person = new Person(name, vorname, geschlecht, geburtsdatum, ahv,
         // region, kinder);

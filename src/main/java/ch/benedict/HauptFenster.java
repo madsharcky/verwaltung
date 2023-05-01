@@ -66,6 +66,7 @@ public class HauptFenster extends JFrame {
         zurueckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
+                // TODO: uncomment this
                 // storage.zurueck();
                 setPersonenInfo();
                 System.out.println("Zurueck Button gedrueckt");
@@ -75,6 +76,7 @@ public class HauptFenster extends JFrame {
         vorwaertsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
+                // TODO: uncomment this
                 // storage.vorwaerts();
                 setPersonenInfo();
                 System.out.println("Vorwaerts Button gedrueckt");
@@ -104,6 +106,7 @@ public class HauptFenster extends JFrame {
      * "vornameLabel" gesetzt.
      */
     private void setPersonenInfo() {
+        // TODO: uncomment this
         // NameLabel.setText(storage.getPerson().getName());
         // vornameLabel.setText(storage.getPerson().getVorname());
     }
