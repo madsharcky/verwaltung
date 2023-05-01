@@ -34,13 +34,13 @@ public class HauptFenster extends JFrame {
         getContentPane().setLayout(new BorderLayout(20, 20));
 
         hauptPanel = new JPanel();
-        hauptPanel.setLayout(new GridLayout(3, 1, 20, 20));
+        hauptPanel.setLayout(new GridLayout(5, 1, 5, 5));
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 5, 20, 20));
 
         titleLabel = new JLabel("Person:");
-        NameLabel = new JLabel("Name");
-        vornameLabel = new JLabel("Vorname");
+        NameLabel = new JLabel("<Name>");
+        vornameLabel = new JLabel("<Vorname>");
         zurueckButton = new JButton("<");
         vorwaertsButton = new JButton(">");
         bearbeitenButton = new JButton("Bearbeiten");
@@ -55,6 +55,7 @@ public class HauptFenster extends JFrame {
         hauptPanel.add(titleLabel);
         hauptPanel.add(NameLabel);
         hauptPanel.add(vornameLabel);
+        hauptPanel.add(new JLabel()); // added as separator
         hauptPanel.add(buttonPanel);
 
         add(hauptPanel);
