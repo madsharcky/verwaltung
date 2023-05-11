@@ -8,8 +8,7 @@ public class PersonenStorage {
 
     public PersonenStorage() {
         this.personen = new ArrayList<>();
-        // TODO: change this, there should always be a person selected.
-        this.position = 0; // position to -1, indicating that there is no current Person selected.
+        this.position = -1; // position to -1, indicating that there is no current Person selected.
     }
 
     public Person getPerson() {
@@ -30,6 +29,8 @@ public class PersonenStorage {
         return personen.add(p);
     }
 
+    // TODO: the position should also be changed after deleting it, or there could
+    // be a nullpointer exception
     public void loeschen() {
         if (position >= 0 && position < personen.size()) {
             personen.remove(position);
