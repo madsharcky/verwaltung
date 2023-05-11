@@ -273,24 +273,23 @@ public class FormularFenster extends JFrame {
             regionComboBox.addItem(region);
         }
 
-        // TODO: uncomment this
-        // if (!isNew) {
-        // // set the values of the person to the textfields
-        // Person person = storage.getPerson
-        // nameTextField.setText(person.getName());
-        // vornameTextField.setText(person.getVorname());
-        // if (person.getGeschlecht().equals("Männlich")) {
-        // geschlechtRadioButton1.setSelected(true);
-        // } else if (person.getGeschlecht().equals("Weiblich")) {
-        // geschlechtRadioButton2.setSelected(true);
-        // } else {
-        // geschlechtRadioButton3.setSelected(true);
-        // }
-        // geburtsdatumTextField.setText(person.getGeburtsdatum());
-        // ahvTextField.setText(person.getAhv());
-        // regionComboBox.setSelectedItem(person.getRegion());
-        // kinderTextField.setValue(person.getKinder());
-        // }
+        if (!isNew) {
+            // set the values of the person to the textfields
+            Person person = storage.getPerson();
+            nameTextField.setText(person.getName());
+            vornameTextField.setText(person.getVorname());
+            if (person.getGeschlecht().equals("Männlich")) {
+                geschlechtRadioButton1.setSelected(true);
+            } else if (person.getGeschlecht().equals("Weiblich")) {
+                geschlechtRadioButton2.setSelected(true);
+            } else {
+                geschlechtRadioButton3.setSelected(true);
+            }
+            geburtsdatumTextField.setText(person.getGeburtsdatum());
+            ahvTextField.setText(person.getAHV());
+            regionComboBox.setSelectedItem(person.getRegion());
+            kinderTextField.setValue(person.getKinder());
+        }
     }
 
     /**
@@ -339,16 +338,15 @@ public class FormularFenster extends JFrame {
         String geburtsdatum = geburtsdatumTextField.getText();
         String ahv = ahvTextField.getText();
         String region = (String) regionComboBox.getSelectedItem();
-        String kinder = kinderTextField.getValue().toString();
+        int kinder = (int) kinderTextField.getValue();
 
-        // TODO: uncomment this
-        // if (isNew) {
-        // Person person = new Person(name, vorname, geschlecht, geburtsdatum, ahv,
-        // region, kinder);
-        // storage.hinzufuegen(person);
-        // } else {
-        // storage.speichern();
-        // }
+        if (isNew) {
+            // TODO: uncomment this
+            // storage.hinzufugen(name, vorname, geschlecht, geburtsdatum, ahv, region,
+            // kinder);
+        } else {
+            storage.speichern();
+        }
 
         System.out.println("Person gespeichert");
         controller.formularFensterSchliessen(this);
@@ -362,15 +360,20 @@ public class FormularFenster extends JFrame {
      */
     private void abbrechen() {
         controller.formularFensterSchliessen(this);
-        System.out.println("abbrechen");
     }
 
     /**
      * Löscht alle Einträge aus dem Speicher.
      */
     private void loeschen() {
-        // storage.loeschen();
-        System.out.println("loeschen");
+        // show dialog to confirm the deletion
+        int dialogResult = JOptionPane.showConfirmDialog(this,
+                "Wollen Sie wirklich diese Person löschen? Dies kann nicht rückgängig gemacht werden.",
+                "Einträge löschen", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            storage.loeschen();
+            controller.formularFensterSchliessen(this);
+        }
     }
 
     /**

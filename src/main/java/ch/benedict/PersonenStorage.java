@@ -1,4 +1,5 @@
 package ch.benedict;
+
 import java.util.ArrayList;
 
 public class PersonenStorage {
@@ -7,7 +8,8 @@ public class PersonenStorage {
 
     public PersonenStorage() {
         this.personen = new ArrayList<>();
-        this.position = -1;  // position to -1, indicating that there is no current Person selected.
+        // TODO: change this, there should always be a person selected.
+        this.position = 0; // position to -1, indicating that there is no current Person selected.
     }
 
     public Person getPerson() {
@@ -22,6 +24,7 @@ public class PersonenStorage {
         return true;
     }
 
+    // TODO: add geburtsdatum
     public boolean hinzufugen(String name, String vorname, String geschlecht, String ahv, String region, int kinder) {
         Person p = new Person(name, vorname, geschlecht, null, ahv, region, kinder);
         return personen.add(p);

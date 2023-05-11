@@ -25,7 +25,7 @@ public class HauptFenster extends JFrame {
      * @param controller ein Objekt der Klasse Controller, das die Steuerung der
      *                   Anwendung übernimmt
      */
-    public HauptFenster(PersonenStorage storage, final Controller controller) {
+    public HauptFenster(final PersonenStorage storage, final Controller controller) {
         super("HauptFenster");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -67,27 +67,22 @@ public class HauptFenster extends JFrame {
         zurueckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                // TODO: uncomment this
-                // storage.zurueck();
+                storage.zurueck();
                 setPersonenInfo();
-                System.out.println("Zurueck Button gedrueckt");
             }
         });
 
         vorwaertsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                // TODO: uncomment this
-                // storage.vorwaerts();
+                storage.vorwaerts();
                 setPersonenInfo();
-                System.out.println("Vorwaerts Button gedrueckt");
             }
         });
 
         bearbeitenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                System.out.println("Bearbeite Button gedrueckt");
                 controller.formularFensterOeffnen(false);
             }
         });
@@ -95,7 +90,6 @@ public class HauptFenster extends JFrame {
         neuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                System.out.println("Neu Button gedrueckt");
                 controller.formularFensterOeffnen(true);
             }
         });
@@ -107,9 +101,8 @@ public class HauptFenster extends JFrame {
      * "vornameLabel" gesetzt.
      */
     private void setPersonenInfo() {
-        // TODO: uncomment this
-        // NameLabel.setText(storage.getPerson().getName());
-        // vornameLabel.setText(storage.getPerson().getVorname());
+        NameLabel.setText(storage.getPerson().getName());
+        vornameLabel.setText(storage.getPerson().getVorname());
     }
 
 }

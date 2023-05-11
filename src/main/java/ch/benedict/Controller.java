@@ -13,6 +13,8 @@ public class Controller {
      */
     public Controller() {
         storage = new PersonenStorage();
+        storage.hinzufugen("Muster", "Hans", "Männlich", "756.2020.2648.97", "ZH", 2);
+        storage.hinzufugen("Muster", "Hanna", "Weiblich", "756.2645.9872.20", "ZH", 2);
         hauptFenster = new HauptFenster(storage, this);
         start();
     }
