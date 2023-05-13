@@ -101,8 +101,15 @@ public class HauptFenster extends JFrame {
      * "vornameLabel" gesetzt.
      */
     private void setPersonenInfo() {
-        NameLabel.setText(storage.getPerson().getName());
-        vornameLabel.setText(storage.getPerson().getVorname());
+        try {
+            NameLabel.setText(storage.getPerson().getName());
+            vornameLabel.setText(storage.getPerson().getVorname());
+        } catch (Exception e) {
+            NameLabel.setText("<Name>");
+            vornameLabel.setText("<Vorname>");
+            return;
+        }
+
     }
 
 }

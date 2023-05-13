@@ -347,8 +347,6 @@ public class FormularFenster extends JFrame {
         } else {
             storage.speichern();
         }
-
-        System.out.println("Person gespeichert");
         controller.formularFensterSchliessen(this);
     }
 
