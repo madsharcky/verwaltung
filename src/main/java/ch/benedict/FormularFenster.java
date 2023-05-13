@@ -341,9 +341,7 @@ public class FormularFenster extends JFrame {
         int kinder = (int) kinderTextField.getValue();
 
         if (isNew) {
-            // TODO: uncomment this
-            // storage.hinzufugen(name, vorname, geschlecht, geburtsdatum, ahv, region,
-            // kinder);
+            storage.hinzufugen(name, vorname, geschlecht, geburtsdatum, ahv, region, kinder);
         } else {
             storage.speichern();
         }
