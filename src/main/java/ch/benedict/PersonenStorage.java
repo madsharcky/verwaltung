@@ -23,9 +23,8 @@ public class PersonenStorage {
         return true;
     }
 
-    // TODO: add geburtsdatum
-    public boolean hinzufugen(String name, String vorname, String geschlecht, String ahv, String region, int kinder) {
-        Person p = new Person(name, vorname, geschlecht, null, ahv, region, kinder);
+    public boolean hinzufugen(String name, String vorname, String geschlecht, String geburtsdatum, String ahv, String region, int kinder) {
+        Person p = new Person(name, vorname, geschlecht, geburtsdatum, ahv, region, kinder);
         return personen.add(p);
     }
 
