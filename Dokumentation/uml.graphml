@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
-  <!--Created by yEd 3.22-->
+  <!--Created by yEd 3.21.1-->
   <key attr.name="Description" attr.type="string" for="graph" id="d0"/>
   <key for="port" id="d1" yfiles.type="portgraphics"/>
   <key for="port" id="d2" yfiles.type="portgeometry"/>
@@ -34,25 +34,23 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="260.66523143164704" width="222.0" x="1489.9324004305702" y="95.82034445640465"/>
+          <y:Geometry height="229.9171151776104" width="407.9024040186582" x="1489.9324004305702" y="111.19440258342297"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="87.7890625" x="67.10546875" xml:space="preserve" y="3.0">HauptFenster<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="87.7890625" x="160.0566707593291" xml:space="preserve" y="3.0">HauptFenster<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">-personenStorage: PersonenStorage
--titleLabel: JLabel
--vollerNamelLabel: JLabel
--zurueckButton: JButton
--vorwaertsButton: JButton
--bearbeitenButton: JButton
--neuButton: JButton
--hauptPanel: JPanel
--buttonPanel: JPanel</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+HauptFenster(PersonenStorage)
-+vorwaertsButtonClick(): void
-+zurueckButtonClick(): void
-+bearbeitenButtonCLick(): void
-+neuButtonCLick(): void</y:MethodLabel>
+            <y:AttributeLabel xml:space="preserve">- storage: PersonenStorage
+- titleLabel: JLabel
+- NameLabel: JLabel
+- vornameLabel: JLabel
+- zurueckButton: JButton
+- vorwaertsButton: JButton
+- bearbeitenButton: JButton
+- neuButton: JButton
+- hauptPanel: JPanel
+- buttonPanel: JPanel</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+ HauptFenster(storage: PersonenStorage, controller: Controller): void
+- setPersonenInfo(): void</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -61,32 +59,42 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="360.5134553283099" width="222.0" x="477.4496878363834" y="45.89623250807324"/>
+          <y:Geometry height="517.4348762109794" width="498.37961966271956" x="191.79261930391155" y="-32.564477933261514"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="107.3017578125" x="57.34912109375" xml:space="preserve" y="3.0">FormularFenster<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="107.3017578125" x="195.53893092510978" xml:space="preserve" y="3.0">FormularFenster<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">-personenStorage: PersonenStorage
--hauptPanel: JPanel
+            <y:AttributeLabel xml:space="preserve">-storage: PersonenStorage
+-controller: Controller (final)
+-isNew: Boolean
+-selectedGeschlecht: String
 -titleLabel: JLabel
--name: JTextfield
--vorname: JTextfield
--Geschlecht: JRadiobutton 
--Geburttsdatum: JTextfield 
--AHVNummer: JTextfield 
--Region: JOptionset 
--Kinder: JTextfield 
+-nameLabel: JLabel
+-vornameLabel: JLabel
+-gesclechtLabel: JLabel
+-geburtsdatumLabel: JLabel
+-ahvLabel: JLabel
+-regionLabel: JLabel
+-kinderLabel: JLabel
+-nameTextField: JTextField
+-vornameTextField: JTextField
+-geschlechtRadioButtonGroup: ButtonGroup
+-geburtsdatumTextField: JTextField
+-ahvTextField: JFormattedTextField
+-regionComboBox: JComboBox
+-kinderTextField: JSpinner
 -speichernButton: JButton
 -abbrechenButton: JButton
 -loeschenButton: JButton
--laender: ArrayList&lt;string&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+FormularFenster(PersonenStorage)
--speichernButtonClick(): void
--abbrechennButtonClick(): void
--loeschenButtonClick(): void
--validationAHV(string): boolean
--validationDatum(string): boolean
--validationKinder(string): boolean</y:MethodLabel>
+-hauptPanel: JPanel
+-buttonPanel: JPanel
+-geschlechtPanel: JPanel
+-regionen: ArrayList&lt;String&gt;</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+FormularFenster(storage: PersonenStorage, controller: Controller, isNew: Boolean): void
+-speichern(): void
+-abbrechen(): void
+-loeschen(): void
+-validateGeburtsdatum(datum: String): boolean</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -95,21 +103,20 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="184.44908503767488" width="625.4379763186223" x="764.2810118406888" y="371.29504843918187"/>
+          <y:Geometry height="184.44908503767488" width="735.7070828848225" x="709.1464585575887" y="371.29504843918187"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="111.6435546875" x="256.89721081556115" xml:space="preserve" y="3.0">PersonenStorage<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="111.6435546875" x="312.03176409866126" xml:space="preserve" y="3.0">PersonenStorage<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">-personen: arrayList&lt;person&gt;
--position: int
-</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+personenStorage()
-+getPerson(): person
-+speichern(): boolean
-+hinzufuegen(name: string, vorname: string, geschlecht: string, ahv: string, region: string, kinder: int):boolean
-+loeschen(): void
-+vorwaerts(): void
-+zurueck(): void</y:MethodLabel>
+            <y:AttributeLabel xml:space="preserve">- personen: ArrayList&lt;Person&gt;
+- position: int</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+ PersonenStorage(): void
++ getPerson(): Person
++ speichern(): boolean
++ hinzufugen(name: String, vorname: String, geschlecht: String, geburtsdatum: String, ahv: String, region: String, kinder: int): boolean
++ loeschen(): void
++ vorwaerts(): void
++ zurueck(): void</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -118,33 +125,33 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="374.23573735199136" width="612.399784714747" x="770.8001076426265" y="613.9569429494079"/>
+          <y:Geometry height="374.23573735199136" width="719.4880516684607" x="717.2559741657697" y="613.9569429494079"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="48.07177734375" x="282.1640036854985" xml:space="preserve" y="3.0">Person<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="48.07177734375" x="335.70813716235534" xml:space="preserve" y="3.0">Person<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">-name: string
--Vorname: string
--geschlecht: string
--geburtsdatum: string
--AHV: string
--region: string
--kinder: int</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+person(name: string, vorname: string, geschlecht: string, ahv: string, region: string, kinder: int)
-+getName: string
-+setName: string
-+getVorname: string
-+setVorname: string
-+getGeschlecht: string
-+setGeschlecht: string
-+getGeburtsdatum: string
-+setGeburtsdatum: string
-+getAHV: string
-+setAHV: string
-+getRegion: string
-+setRegion: string
-+getKinder: int
-+setKinder: int</y:MethodLabel>
+            <y:AttributeLabel xml:space="preserve">- name: String
+- vorname: String
+- geschlecht: String
+- geburtsdatum: String
+- ahv: String
+- region: String
+- kinder: int</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+ Person(name: String, vorname: String, geschlecht: String, geburtsdatum: String, ahv: String, region: String, kinder: int): void
++ getName(): String
++ setName(name: String): void
++ getVorname(): String
++ setVorname(vorname: String): void
++ getGeschlecht(): String
++ setGeschlecht(geschlecht: String): void
++ getGeburtsdatum(): String
++ setGeburtsdatum(geburtsdatum: String): void
++ getAHV(): String
++ setAHV(ahv: String): void
++ getRegion(): String
++ setRegion(region: String): void
++ getKinder(): int
++ setKinder(kinder: int): void</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -153,18 +160,18 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="152.4940796555436" width="307.63832077502707" x="923.1808396124864" y="149.90592034445638"/>
+          <y:Geometry height="141.8912809472551" width="307.63832077502707" x="923.1808396124865" y="155.20731969860063"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="66.11181640625" x="120.76325218438853" xml:space="preserve" y="3.0">Controller<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve">-formularFenster: Formularfenster
--startFenster: StartFenster
+-hauptFenster: Hauptfenster
 -storage: Storage</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+controller()
-+formaularFensterOeffnen(personenStorage):void
-+startFensterOeffnen(personenStorage):void
--personenHinzufuegen():void</y:MethodLabel>
++formaularFensterOeffnen(boolean):void
++formularFensterSchliessen(FormularFenster):int
+</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>

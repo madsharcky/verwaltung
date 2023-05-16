@@ -4,6 +4,7 @@ public class Controller {
 
     private PersonenStorage storage;
     private HauptFenster hauptFenster;
+    private FormularFenster formularFenster;
 
     /**
      * Konstruktor für die Controller-Klasse. Erzeugt eine Instanz der
@@ -13,7 +14,7 @@ public class Controller {
      */
     public Controller() {
         storage = new PersonenStorage();
-        storage.hinzufugen("Muster", "Hans", "Männlich", "23.04.1964","756.2020.2648.97", "ZH", 2);
+        storage.hinzufugen("Muster", "Hans", "Männlich", "23.04.1964", "756.2020.2648.97", "ZH", 2);
         storage.hinzufugen("Muster", "Hanna", "Weiblich", "17.09.1966", "756.2645.9872.20", "ZH", 2);
         hauptFenster = new HauptFenster(storage, this);
         start();
@@ -32,7 +33,7 @@ public class Controller {
      * @param istNeu Gibt an, ob es sich um ein neues Formular handelt oder nicht.
      */
     public void formularFensterOeffnen(boolean istNeu) {
-        FormularFenster formularFenster = new FormularFenster(storage, this, istNeu);
+        formularFenster = new FormularFenster(storage, this, istNeu);
         formularFenster.setVisible(true);
         // make HauptFenster dormant
         hauptFenster.setEnabled(false);
