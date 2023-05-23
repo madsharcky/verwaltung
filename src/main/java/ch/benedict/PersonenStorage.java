@@ -8,7 +8,7 @@ public class PersonenStorage {
 
     public PersonenStorage() {
         this.personen = new ArrayList<>();
-        this.position = -1; // position to -1, indicating that there is no current Person selected.
+        this.position = 0; // position to -1, indicating that there is no current Person selected.
     }
 
     public Person getPerson() {
@@ -23,16 +23,19 @@ public class PersonenStorage {
         return true;
     }
 
-    public boolean hinzufugen(String name, String vorname, String geschlecht, String geburtsdatum, String ahv, String region, int kinder) {
+    public boolean hinzufugen(String name, String vorname, String geschlecht, String geburtsdatum, String ahv,
+            String region, int kinder) {
         Person p = new Person(name, vorname, geschlecht, geburtsdatum, ahv, region, kinder);
         return personen.add(p);
     }
 
-    // TODO: the position should also be changed after deleting it, or there could
-    // be a nullpointer exception
     public void loeschen() {
         if (position >= 0 && position < personen.size()) {
             personen.remove(position);
+            position--;
+            if (position < 0) {
+                position = 0;
+            }
         }
     }
 

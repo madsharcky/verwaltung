@@ -62,7 +62,8 @@ public class HauptFenster extends JFrame {
 
         setPersonenInfo();
 
-        pack(); // resize window to fit content
+        // pack(); // resize window to fit content
+        setSize(600, 400);
 
         zurueckButton.addActionListener(new ActionListener() {
             @Override
@@ -100,7 +101,7 @@ public class HauptFenster extends JFrame {
      * Dabei wird der Name in das Label "NameLabel" und der Vorname in das Label
      * "vornameLabel" gesetzt.
      */
-    private void setPersonenInfo() {
+    public void setPersonenInfo() {
         try {
             NameLabel.setText(storage.getPerson().getName());
             vornameLabel.setText(storage.getPerson().getVorname());

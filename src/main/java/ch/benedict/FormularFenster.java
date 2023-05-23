@@ -74,7 +74,6 @@ public class FormularFenster extends JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Personenformular");
         setResizable(false);
-        setLocationRelativeTo(null);
 
         this.storage = storage;
         this.controller = controller;

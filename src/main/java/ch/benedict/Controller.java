@@ -16,6 +16,10 @@ public class Controller {
         storage = new PersonenStorage();
         storage.hinzufugen("Muster", "Hans", "Männlich", "23.04.1964", "756.2020.2648.97", "ZH", 2);
         storage.hinzufugen("Muster", "Hanna", "Weiblich", "17.09.1966", "756.2645.9872.20", "ZH", 2);
+        storage.hinzufugen("Erwin", "Ernst", "Männlich", "01.01.1990", "756.2020.2678.20", "ZH", 2);
+        storage.hinzufugen("Erwin", "Erika", "Weiblich", "01.01.1990", "756.2020.2648.20", "ZH", 2);
+        storage.hinzufugen("Erwin", "Egon", "Männlich", "01.01.1999", "756.2020.2048.20", "ZH", 2);
+
         hauptFenster = new HauptFenster(storage, this);
         start();
     }
@@ -49,6 +53,7 @@ public class Controller {
      */
     public int formularFensterSchliessen(FormularFenster formularFenster) {
         // make HauptFenster active again
+        hauptFenster.setPersonenInfo();
         hauptFenster.setEnabled(true);
         formularFenster.dispose();
         return 2;
